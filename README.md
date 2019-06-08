@@ -185,6 +185,308 @@ with the DataModel already imported now we will create the action because we hav
             return result;
         }
 
+now we go to booksModel and import the DataAcess, to finish the DataAcces we bring the actions we did in the following way:
+
+        public List<BookModel> lista { get; set; }
+
+        public void create()
+        {
+            BookDao xyz = new BookDao();
+            xyz.Create(this);
+        }
+
+        public void delete (decimal usu)
+        {
+            BookDao e = new BookDao();
+            e.Delete(usu);
+
+        }
+
+        public BookModel consultbo(decimal id)
+        {
+            BookDao con = new BookDao();
+            return con.Consultbo(id);
+        }
+
+        public void update()
+        {
+            BookDao a = new BookDao();
+            a.update(this);
+
+        }
+
+        public List<BookModel> consult()
+        {
+            BookDao dao = new BookDao();
+            return dao.Consult();
+        }
+    
+  ow we create in the controller folder a driver called Bookscontroller
+  
+  ![image](https://user-images.githubusercontent.com/51175009/59141553-ab05b380-8974-11e9-959d-eaa24794c345.png)
+  ![image](https://user-images.githubusercontent.com/51175009/59141557-be188380-8974-11e9-919b-1b73722e13a1.png)
+  ![image](https://user-images.githubusercontent.com/51175009/59141559-cf619000-8974-11e9-92b1-4b3450c89858.png)
+  
+  already in the driver we import the models and we put the following code:
+         
+       public ActionResult Index()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult Index(BookModel bookModel)
+        {
+            if (ModelState.IsValid)
+            {
+                bookModel.create();
+                return RedirectToAction("GuardadoExitoso");
+            }
+            else
+            {
+                return View(bookModel);
+            }
+
+        }
+
+        public ActionResult update(decimal id)
+        {
+            BookModel bo = new BookModel();
+            bo = bo.consultbo(id);
+
+            return View(bo);
+        }
+
+        public ActionResult save(BookModel book)
+        {
+            book.update();
+            return RedirectToAction("Books");
+        }
+
+        public ActionResult Books()
+        {
+            BookModel bo = new BookModel();
+            bo.lista = bo.consult();
+            return View(bo);
+        }
+
+        public ActionResult GuardadoExitoso()
+        {
+            return View();
+        }
+
+        public ActionResult ask(decimal id)
+        {
+            BookModel bo = new BookModel();
+            bo = bo.consultbo(id);
+
+            return View(bo);
+        }
+
+
+        public ActionResult Delete(decimal id)
+        {
+            BookModel bo = new BookModel();
+            bo.delete(id);
+            return RedirectToAction("Books");
+        }
+        
+     
+now we create the view by right clicking on the name of what we have created
+
+![image](https://user-images.githubusercontent.com/51175009/59141742-3b91c300-8978-11e9-94c1-79e7f609b492.png)
+![image](https://user-images.githubusercontent.com/51175009/59141745-477d8500-8978-11e9-9263-df79371f69cd.png)
+
+in the Index view we put the following code:
+
+    @model books.Models.BookModel
+    @{
+     ViewBag.Title = "Index";
+    }
+
+    <h2 style="color:blue">New Books</h2>
+
+
+    @using (Html.BeginForm("Index", "Books", FormMethod.Post))
+    {
+    <div class="form-group " style="color:aqua">
+        @Html.LabelFor(k => k.Name)
+        @Html.TextBoxFor(k => k.Name, new { @class = "form-control" })
+        @Html.ValidationMessageFor(k => k.Name, " ", new { @class = "form-text text-danger" })
+    </div>
+
+
+    <div class="form-group" style="color:aqua">
+        @Html.LabelFor(k => k.author)
+        @Html.TextBoxFor(k => k.author, new { @class = "form-control" })
+        @Html.ValidationMessageFor(k => k.author, "", new { @class = "form-text text-danger" })
+    </div>
+
+    <div class="form-group" style="color:aqua">
+        @Html.LabelFor(k => k.editorial)
+        @Html.TextBoxFor(k => k.editorial, new { @class = "form-control" })
+        @Html.ValidationMessageFor(k => k.editorial, "", new { @class = "form-text text-danger" })
+    </div>
+
+    <div class="form-group" style="color:aqua">
+        @Html.LabelFor(k => k.edition)
+        @Html.TextBoxFor(k => k.edition, new { @class = "form-control" })
+        @Html.ValidationMessageFor(k => k.edition, "", new { @class = "form-text text-danger" })
+    </div>
+
+    <div class="form-group" style="color:aqua">
+        @Html.LabelFor(k => k.publication)
+        @Html.TextBoxFor(k => k.publication, new { @class = "form-control" })
+        @Html.ValidationMessageFor(k => k.publication, "", new { @class = "form-text text-danger" })
+    </div>
+
+    <div class="form-group" style="color:aqua">
+        @Html.LabelFor(k => k.id_city)
+        @Html.TextBoxFor(k => k.id_city, new { @class = "form-control" })
+        @Html.ValidationMessageFor(k => k.id_city, "", new { @class = "form-text text-danger" })
+    </div>
+
+    <div class="form-group" style="color:aqua">
+        @Html.LabelFor(k => k.Country)
+        @Html.TextBoxFor(k => k.Country, new { @class = "form-control" })
+        @Html.ValidationMessageFor(k => k.Country, "", new { @class = "form-text text-danger" })
+    </div>
+    <div class="form-group">
+        <button class="btn btn-primary" type="submit">Add!!</button>
+    </div>
+
+    }
+    
+    
+ in the Update view we put the following code:
+                  
+    @model books.Models.BookModel
+    @{
+     ViewBag.Title = "update";
+    }
+
+    <h2 style="color:blue">Modify Books</h2>
+
+
+    @using (Html.BeginForm("save", "Books", FormMethod.Post))
+    {
+    @Html.HiddenFor(k => k.id)
+    <div class="form-group " style="color:aqua">
+        @Html.LabelFor(k => k.Name)
+        @Html.TextBoxFor(k => k.Name, new { @class = "form-control" })
+        @Html.ValidationMessageFor(k => k.Name, " ", new { @class = "form-text text-danger" })
+    </div>
+
+
+    <div class="form-group" style="color:aqua">
+        @Html.LabelFor(k => k.author)
+        @Html.TextBoxFor(k => k.author, new { @class = "form-control" })
+        @Html.ValidationMessageFor(k => k.author, "", new { @class = "form-text text-danger" })
+    </div>
+
+    <div class="form-group" style="color:aqua">
+        @Html.LabelFor(k => k.editorial)
+        @Html.TextBoxFor(k => k.editorial, new { @class = "form-control" })
+        @Html.ValidationMessageFor(k => k.editorial, "", new { @class = "form-text text-danger" })
+    </div>
+
+    <div class="form-group" style="color:aqua">
+        @Html.LabelFor(k => k.edition)
+        @Html.TextBoxFor(k => k.edition, new { @class = "form-control" })
+        @Html.ValidationMessageFor(k => k.edition, "", new { @class = "form-text text-danger" })
+    </div>
+
+    <div class="form-group" style="color:aqua">
+        @Html.LabelFor(k => k.publication)
+        @Html.TextBoxFor(k => k.publication, new { @class = "form-control" })
+        @Html.ValidationMessageFor(k => k.publication, "", new { @class = "form-text text-danger" })
+    </div>
+
+    <div class="form-group" style="color:aqua">
+        @Html.LabelFor(k => k.id_city)
+        @Html.TextBoxFor(k => k.id_city, new { @class = "form-control" })
+        @Html.ValidationMessageFor(k => k.id_city, "", new { @class = "form-text text-danger" })
+    </div>
+
+    <div class="form-group" style="color:aqua">
+        @Html.LabelFor(k => k.Country)
+        @Html.TextBoxFor(k => k.Country, new { @class = "form-control" })
+        @Html.ValidationMessageFor(k => k.Country, "", new { @class = "form-text text-danger" })
+    </div>
+    <div class="form-group">
+        @Html.ActionLink("VOLVER", "Books", null, new { @class = "btn btn-primary" })
+        <button class="btn btn-primary" type="submit">Update!!</button>
+    </div>
+
+    }
+    
+in the Update view we put the following code:
+
+
+    @model books.Models.BookModel
+    @{
+     ViewBag.Title = "Books";
+    }
+
+    <h2 style="color:blue">Consulta Usuarios</h2>
+
+    <table class="table table-hover">
+    <thead>
+        <tr bgcolor="red" style="color:darkblue">
+            <th>id</th>
+            <th>Name</th>
+            <th>author</th>
+            <th>editorial</th>
+            <th>edition</th>
+            <th>publication</th>
+            <th>id_city </th>
+            <th>Country</th>
+            <th colspan="2" style="text-align:center">ACCIONES</th>
+        </tr>
+
+    </thead>
+    <tbody>
+        @foreach (var item in Model.lista)
+        {
+            <tr bgcolor="cyan">
+                <td>@Html.DisplayFor(m => item.id)</td>
+                <td>@Html.DisplayFor(m => item.Name)</td>
+                <td>@Html.DisplayFor(m => item.author)</td>
+                <td>@Html.DisplayFor(m => item.editorial)</td>
+                <td>@Html.DisplayFor(m => item.edition)</td>
+                <td>@Html.DisplayFor(m => item.publication)</td>
+                <td>@Html.DisplayFor(m => item.id_city)</td>
+                <td>@Html.DisplayFor(m => item.Country)</td>
+                <td>@Html.ActionLink("Update", "update", new { Id = item.id }, new { @class = "btn btn-primary" })</td>
+                <td>@Html.ActionLink("Delete", "ask", new { Id = item.id }, new { @class = "btn btn-primary" })</td>
+            </tr>
+        }
+    </tbody>
+    </table>
+in the Ask view we put the following code:
+
+    @model books.Models.BookModel
+    @{
+    ViewBag.Title = "ask";
+    }
+
+    <h2 style="color:cyan" align="center">YOU ARE SURE YOU WANT TO ELIMINATE THE USER: @Html.DisplayFor(k => k.id) @Html.DisplayFor(k => k.author) </h2>
+    <br />
+    @using (Html.BeginForm("delete", "Books", FormMethod.Post))
+    {
+    @Html.HiddenFor(k => k.id)
+    <div class="form-group" align="center">
+        <button class="btn btn-primary" type="submit">Delete</button>
+        @Html.ActionLink("VOLVER", "Books", null, new { @class = "btn btn-primary" })
+    </div>
+    }
+    
+    
+So far the tutorial already has how to make a crud with ASP.NET
+by:Diego Andres Paz Pantoja
+
+    
+
 
 
 
