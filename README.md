@@ -31,3 +31,35 @@ Now the primary key we activate the identity in the part lower right for that th
 For finalize we click on the update button we will get the following and press update database
 
 ![image](https://user-images.githubusercontent.com/51175009/59139864-f069b700-895b-11e9-80da-1c5614120d84.png)
+
+Now we will create a new table called book which will have a foreign key as we will first perform the previous steps until before pressing the update button would be as follows
+
+![image](https://user-images.githubusercontent.com/51175009/59140099-1c3a6c00-895f-11e9-9d4b-0689e5267114.png)
+
+Now we right click on the external keys and select add a new external key to give us the format of the foreign key
+
+![image](https://user-images.githubusercontent.com/51175009/59140153-ab478400-895f-11e9-9693-12b45c349be5.png)
+![image](https://user-images.githubusercontent.com/51175009/59140160-c31f0800-895f-11e9-99f7-4dda89f473d8.png)
+
+Now, in the error that you give us in the column, we replace this with the name of the column that will be a foreign key, then we return the ToTable and ToTableColumn errors by the name of the table and the column to which it will be reference respectively, and finalize we want to update
+
+![image](https://user-images.githubusercontent.com/51175009/59140292-35dcb300-8961-11e9-9716-fdce41381141.png)
+
+the next step is to create two folders in the models folder called DataAcces and DataModel, this is done by right clicking on the models folder we are going to add and inside we give you to add folder it would be this way
+
+![image](https://user-images.githubusercontent.com/51175009/59140421-89033580-8962-11e9-88f7-2db62cca71a8.png)
+![image](https://user-images.githubusercontent.com/51175009/59140435-b354f300-8962-11e9-9340-b9bdd21c0401.png)
+
+
+now we import the database to DataModel by right clicking on this folder and we give it to add followed by class
+
+![image](https://user-images.githubusercontent.com/51175009/59140458-3a09d000-8963-11e9-8df6-0f69e8b002df.png)
+
+already in the interface we select the class ADO.NET Entity Data Model and we select add
+
+![image](https://user-images.githubusercontent.com/51175009/59140486-b7cddb80-8963-11e9-98f6-df11a948493e.png)
+
+
+
+
+
