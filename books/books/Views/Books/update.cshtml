@@ -1,0 +1,60 @@
+﻿@model books.Models.BookModel
+@{
+    ViewBag.Title = "update";
+}
+
+<h2 style="color:blue">Modify Books</h2>
+
+
+@using (Html.BeginForm("save", "Books", FormMethod.Post))
+{
+    @Html.HiddenFor(k => k.id)
+    <div class="form-group " style="color:aqua">
+        @Html.LabelFor(k => k.Name)
+        @Html.TextBoxFor(k => k.Name, new { @class = "form-control" })
+        @Html.ValidationMessageFor(k => k.Name, " ", new { @class = "form-text text-danger" })
+    </div>
+
+
+    <div class="form-group" style="color:aqua">
+        @Html.LabelFor(k => k.author)
+        @Html.TextBoxFor(k => k.author, new { @class = "form-control" })
+        @Html.ValidationMessageFor(k => k.author, "", new { @class = "form-text text-danger" })
+    </div>
+
+    <div class="form-group" style="color:aqua">
+        @Html.LabelFor(k => k.editorial)
+        @Html.TextBoxFor(k => k.editorial, new { @class = "form-control" })
+        @Html.ValidationMessageFor(k => k.editorial, "", new { @class = "form-text text-danger" })
+    </div>
+
+    <div class="form-group" style="color:aqua">
+        @Html.LabelFor(k => k.edition)
+        @Html.TextBoxFor(k => k.edition, new { @class = "form-control" })
+        @Html.ValidationMessageFor(k => k.edition, "", new { @class = "form-text text-danger" })
+    </div>
+
+    <div class="form-group" style="color:aqua">
+        @Html.LabelFor(k => k.publication)
+        @Html.TextBoxFor(k => k.publication, new { @class = "form-control" })
+        @Html.ValidationMessageFor(k => k.publication, "", new { @class = "form-text text-danger" })
+    </div>
+
+    <div class="form-group" style="color:aqua">
+        @Html.LabelFor(k => k.id_city)
+        @Html.TextBoxFor(k => k.id_city, new { @class = "form-control" })
+        @Html.ValidationMessageFor(k => k.id_city, "", new { @class = "form-text text-danger" })
+    </div>
+
+    <div class="form-group" style="color:aqua">
+        @Html.LabelFor(k => k.Country)
+        @Html.TextBoxFor(k => k.Country, new { @class = "form-control" })
+        @Html.ValidationMessageFor(k => k.Country, "", new { @class = "form-text text-danger" })
+    </div>
+    <div class="form-group">
+        @Html.ActionLink("VOLVER", "Books", null, new { @class = "btn btn-primary" })
+        <button class="btn btn-primary" type="submit">Update!!</button>
+    </div>
+
+}
+

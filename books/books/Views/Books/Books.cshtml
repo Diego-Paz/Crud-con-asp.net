@@ -1,0 +1,41 @@
+﻿@model books.Models.BookModel
+@{
+    ViewBag.Title = "Books";
+}
+
+<h2 style="color:blue">Consulta Usuarios</h2>
+
+<table class="table table-hover">
+    <thead>
+        <tr bgcolor="red" style="color:darkblue">
+            <th>id</th>
+            <th>Name</th>
+            <th>author</th>
+            <th>editorial</th>
+            <th>edition</th>
+            <th>publication</th>
+            <th>id_city </th>
+            <th>Country</th>
+            <th colspan="2" style="text-align:center">ACCIONES</th>
+        </tr>
+
+    </thead>
+    <tbody>
+        @foreach (var item in Model.lista)
+        {
+            <tr bgcolor="cyan">
+                <td>@Html.DisplayFor(m => item.id)</td>
+                <td>@Html.DisplayFor(m => item.Name)</td>
+                <td>@Html.DisplayFor(m => item.author)</td>
+                <td>@Html.DisplayFor(m => item.editorial)</td>
+                <td>@Html.DisplayFor(m => item.edition)</td>
+                <td>@Html.DisplayFor(m => item.publication)</td>
+                <td>@Html.DisplayFor(m => item.id_city)</td>
+                <td>@Html.DisplayFor(m => item.Country)</td>
+                <td>@Html.ActionLink("Update", "update", new { Id = item.id }, new { @class = "btn btn-primary" })</td>
+                <td>@Html.ActionLink("Delete", "ask", new { Id = item.id }, new { @class = "btn btn-primary" })</td>
+            </tr>
+        }
+    </tbody>
+</table>
+

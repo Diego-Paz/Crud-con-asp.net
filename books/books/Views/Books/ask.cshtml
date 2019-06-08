@@ -1,0 +1,16 @@
+﻿@model books.Models.BookModel
+@{
+    ViewBag.Title = "ask";
+}
+
+<h2 style="color:cyan" align="center">YOU ARE SURE YOU WANT TO ELIMINATE THE USER: @Html.DisplayFor(k => k.id) @Html.DisplayFor(k => k.author) </h2>
+<br />
+@using (Html.BeginForm("delete", "Books", FormMethod.Post))
+{
+    @Html.HiddenFor(k => k.id)
+    <div class="form-group" align="center">
+        <button class="btn btn-primary" type="submit">Delete</button>
+        @Html.ActionLink("VOLVER", "Books", null, new { @class = "btn btn-primary" })
+    </div>
+}
+
