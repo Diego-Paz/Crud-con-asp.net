@@ -66,4 +66,28 @@ then we select EF Designer from database we give it next and then again next tim
 ![image](https://user-images.githubusercontent.com/51175009/59140541-d41e4800-8964-11e9-85fa-e6f96aab4943.png)
 
 
+now we will create a class in models called BooksModel in which will be the data and actions that our program will have
+
+![image](https://user-images.githubusercontent.com/51175009/59140610-c1f0d980-8965-11e9-96e1-9ad226dab490.png)
+![image](https://user-images.githubusercontent.com/51175009/59140618-ee0c5a80-8965-11e9-8612-c4e04263f424.png)
+
+
+we enter the model that we have just created and add the fields that our program will have by first writing public followed by the type of data that it will have and to finish the name of the field followed by opening keys in which internally the GET and SET methods will have which ended with a semicolon.
+
+![image](https://user-images.githubusercontent.com/51175009/59140968-a3d9a800-896a-11e9-8b30-58dbccfa954d.png)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
