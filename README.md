@@ -59,7 +59,11 @@ already in the interface we select the class ADO.NET Entity Data Model and we se
 
 ![image](https://user-images.githubusercontent.com/51175009/59140486-b7cddb80-8963-11e9-98f6-df11a948493e.png)
 
+then we select EF Designer from database we give it next and then again next time the database would be imported
 
+![image](https://user-images.githubusercontent.com/51175009/59140539-a6d19a00-8964-11e9-9cef-171dffd78eb7.png)
+![image](https://user-images.githubusercontent.com/51175009/59140540-b4871f80-8964-11e9-915f-081bf897c261.png)
+![image](https://user-images.githubusercontent.com/51175009/59140541-d41e4800-8964-11e9-85fa-e6f96aab4943.png)
 
 
 
